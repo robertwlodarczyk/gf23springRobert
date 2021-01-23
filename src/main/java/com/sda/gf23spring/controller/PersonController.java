@@ -75,12 +75,12 @@ public class PersonController {
         return "redirect:/spersons";
     }
 
-    @GetMapping("/sPersonsByAge")
-    public String sPersonsByAge(@RequestParam("min") String min, @RequestParam("max") String max, Model model) {
-        List<Person> personList = personService.getByBirthDateBetween(min,max, Utils.DATE_FORMAT_HTML);
-        model.addAttribute("persons",personList);
-        return "selectedPersons";
-    }
+//    @GetMapping("/sPersonsByAge")
+//    public String sPersonsByAge(@RequestParam("min") String min, @RequestParam("max") String max, Model model) {
+//        List<Person> personList = personService.getByBirthDateBetween(min,max, Utils.DATE_FORMAT_HTML);
+//        model.addAttribute("persons",personList);
+//        return "selectedPersons";
+//    }
 
 
 }
