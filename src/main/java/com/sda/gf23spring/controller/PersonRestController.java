@@ -2,6 +2,7 @@ package com.sda.gf23spring.controller;
 
 import com.sda.gf23spring.person.Person;
 import com.sda.gf23spring.service.PersonService;
+import com.sda.gf23spring.utils.Utils;
 import org.slf4j.Logger;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,7 +54,7 @@ public class PersonRestController {
     public List<Person> getByDateBetween(@RequestParam(value = "from",defaultValue = "") String from,
                                          @RequestParam(value = "to", defaultValue = "") String to) {
         logger.debug("from: {}, to: {}", from, to);
-        return personService.getByBirthDateBetween(from, to);
+        return personService.getByBirthDateBetween(from, to, Utils.DATE_FORMAT);
     }
 
     @DeleteMapping("/person/delete/{id}")

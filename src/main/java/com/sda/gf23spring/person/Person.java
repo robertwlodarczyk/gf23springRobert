@@ -71,6 +71,7 @@ public class Person {
     }
 
     public String getBirthDateS() {
+        birthDateS=birthDate.format(Utils.DATE_FORMAT_HTML);
         return birthDateS;
     }
 

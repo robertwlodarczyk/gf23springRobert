@@ -10,11 +10,12 @@
 <div class="container">
     <h1>Szczegóły</h1>
     <div>
-        <ul>Id: <span th:text="${person.personId}"></span> </ul>
-        <ul>Imie: <span th:text="${person.firstName}"></span> </ul>
-        <ul>Nazwisko: <span th:text="${person.lastName}"></span> </ul>
-        <ul>Data urodzenia: <span th:text="${person.birthDate}"></span> </ul>
-        <ul>Wynagrodzenie: <span th:text="${person.salary}"></span> </ul>
+        <ul>Id: <span th:text="${person.personId}"></span></ul>
+        <ul>Imie: <span th:text="${person.firstName}"></span></ul>
+        <ul>Nazwisko: <span th:text="${person.lastName}"></span></ul>
+        <ul>Data urodzenia: <span th:text="${person.birthDate}"></span></ul>
+        <ul>Wynagrodzenie: <span th:text="${person.salary}"></span></ul>
+        <ul><a th:href="${'/modifyPerson/'+ person.personId}">Modyfikuj</a></ul>
     </div>
 </div>
 </body>

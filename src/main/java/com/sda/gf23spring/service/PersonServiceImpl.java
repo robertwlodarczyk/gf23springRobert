@@ -7,6 +7,7 @@ import com.sda.gf23spring.utils.Utils;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -47,9 +48,9 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Person> getByBirthDateBetween(String from, String to) {
-        LocalDate dateFrom = checkString(from) ? LocalDate.parse(from, Utils.DATE_FORMAT) : LocalDate.of(1900, 01, 01);
-        LocalDate dateTo = checkString(to) ? LocalDate.parse(to, Utils.DATE_FORMAT) : LocalDate.now();
+    public List<Person> getByBirthDateBetween(String from, String to, DateTimeFormatter format) {
+        LocalDate dateFrom = checkString(from) ? LocalDate.parse(from, format) : LocalDate.of(1900, 01, 01);
+        LocalDate dateTo = checkString(to) ? LocalDate.parse(to, format) : LocalDate.now();
         return personDao.getByBirthDateBetween(dateFrom, dateTo)
                 .stream()
                 .sorted(Comparator.comparing(Person::getBirthDate))
