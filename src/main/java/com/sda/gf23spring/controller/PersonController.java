@@ -21,6 +21,12 @@ public class PersonController {
         this.personService = personService;
     }
 
+    @GetMapping("/")
+    public String goToSPersons(){
+        return "redirect:/spersons";
+    }
+
+
     @GetMapping("/spersons")
     public String getAllPersons(Model model) {
         List<Person> people = personService.getAll();

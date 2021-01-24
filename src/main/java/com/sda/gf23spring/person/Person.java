@@ -2,22 +2,34 @@ package com.sda.gf23spring.person;
 
 import com.sda.gf23spring.utils.Utils;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "persons")
 public class Person {
+
+    @Id
+    @GeneratedValue
+    @Column(name = "person_id")
     private int personId;
     @NotNull
     @Size(min = 2, message = "Imie powinno posiadać między 2 a 20 znaków")
+    @Column(name = "first_name")
     private String firstName;
     @NotNull
     @Size(min = 2, message = "Nazwisko powinno posiadać między 2 a 20 znaków")
+    @Column(name = "last_name")
     private String lastName;
+    @Column(name = "birth_Date")
     private LocalDate birthDate;
     @Pattern(regexp = "[\\d]{4}-[\\d]{2}-[\\d]{2}", message = "Nieprawidłowa data")
+    @Transient
     private String birthDateS;
+    @Column(name = "salary")
     private double salary;
 
     public Person() {

@@ -10,6 +10,18 @@
 <div class="container">
     <h1 th:text="#{hello}"></h1>
     <div>
+        <div>
+            <form class="form-group" th:action="@{/sPersonsByAge}" th:method="get">
+                <label>Data od: </label>
+                <input type="date" th:name="min"/>
+                <label>Data do:</label>
+                <input type="date" th:name="max">
+                <button type="submit" class="btn">
+                    <button>Wyszukaj</button>
+                </button>
+
+            </form>
+        </div>
         <table class="table">
             <thead>
             <tr>
@@ -32,18 +44,6 @@
             </tr>
             </tbody>
         </table>
-        <div>
-            <form class="form-group" th:action="@{/sPersonsByAge}" th:method="get">
-                <label>Data od: </label>
-                <input type="date" th:name="min"/>
-                <label>Data do:</label>
-                <input type="date" th:name="max">
-                <button type="submit" class="btn">
-                    <button>Wyszukaj</button>
-                </button>
-
-            </form>
-        </div>
         <div class="row">
             <a href="/addPerson">
                 <button>Dodaj osobę</button>
