@@ -33,7 +33,7 @@
             </tbody>
         </table>
         <div>
-            <form class="form-group" th:name="${persons}" th:action="@{/selectedPersons}" th:method="get">
+            <form class="form-group" th:action="@{/sPersonsByAge}" th:method="get">
                 <label>Data od: </label>
                 <input type="date" th:name="min"/>
                 <label>Data do:</label>
