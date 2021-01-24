@@ -7,9 +7,13 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-
 @Entity
 @Table(name = "persons")
+@NamedQueries({
+        @NamedQuery(name = "firstAndLastName", query = "select p from Person p where lower( p.firstName) like concat('%', :firstName, '%') " +
+                " and lower( p.lastName) like concat('%', :lastName, '%')"),
+        @NamedQuery(name = "firstAndLastName1", query = "select p from Person p where lower( p.firstName) like concat('%', :firstName, '%') " +
+                " and lower( p.lastName) like concat('%', :lastName, '%')")})
 public class Person {
 
     @Id
@@ -24,7 +28,7 @@ public class Person {
     @Size(min = 2, message = "Nazwisko powinno posiadać między 2 a 20 znaków")
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "birth_Date")
+    @Column(name = "birth_date")
     private LocalDate birthDate;
     @Pattern(regexp = "[\\d]{4}-[\\d]{2}-[\\d]{2}", message = "Nieprawidłowa data")
     @Transient
@@ -83,14 +87,14 @@ public class Person {
     }
 
     public String getBirthDateS() {
-        if (birthDate != null) {
+        if(birthDate != null) {
             birthDateS = birthDate.format(Utils.DATE_FORMAT_HTML);
         }
         return birthDateS;
     }
 
     public void setBirthDateS(String birthDateS) {
-        if (birthDateS != null) {
+        if(birthDateS != null) {
             birthDate = LocalDate.parse(birthDateS, Utils.DATE_FORMAT_HTML);
             this.birthDateS = birthDateS;
         }

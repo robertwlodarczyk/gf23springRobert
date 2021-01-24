@@ -19,19 +19,16 @@ public class PersonServiceImpl implements PersonService {
     PersonDaoHibernate personDaoHibernate;
 
     public PersonServiceImpl(PersonDaoHibernate personDaoHibernate) {
-
         this.personDaoHibernate = personDaoHibernate;
     }
 
     @Override
     public List<Person> getAll() {
-
         return personDaoHibernate.findAll();
     }
 
     @Override
     public Person getById(int personId) {
-
         return personDaoHibernate.getOne(personId);
     }
 
@@ -48,7 +45,6 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> getByLastName(String lastName) {
-
         return personDaoHibernate.getAllByLastName(lastName);
     }
 
@@ -56,7 +52,7 @@ public class PersonServiceImpl implements PersonService {
     public List<Person> getByBirthDateBetween(String from, String to, DateTimeFormatter format) {
         LocalDate dateFrom = checkString(from) ? LocalDate.parse(from, format) : LocalDate.of(1900, 01, 01);
         LocalDate dateTo = checkString(to) ? LocalDate.parse(to, format) : LocalDate.now();
-        return personDaoHibernate.getAllByBirthDateBetween(dateFrom,dateTo);
+        return personDaoHibernate.getAllByBirthDateBetween(dateFrom, dateTo);
     }
 
     private boolean checkString(String txt) {
@@ -65,17 +61,12 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> getBySalaryBetween(double from, double to) {
-
         return personDaoHibernate.getAllBySalaryBetween(from, to);
     }
 
     @Override
     public List<Person> getByFirstNameAndLastName(String firstName, String lastName) {
-        return getAll()
-                .stream()
-                .filter(x -> x.getFirstName().toLowerCase().contains(firstName.toLowerCase()))
-                .filter(x -> x.getLastName().toLowerCase().contains(lastName.toLowerCase()))
-                .collect(Collectors.toList());
+        return personDaoHibernate.pobierz(firstName, lastName);
     }
 
     @Override
@@ -95,5 +86,4 @@ public class PersonServiceImpl implements PersonService {
         personDaoHibernate.delete(byId);
         return byId;
     }
-
 }
