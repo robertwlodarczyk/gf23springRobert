@@ -49,6 +49,11 @@
                 <button>Dodaj osobę</button>
             </a>
         </div>
+        <div class="row">
+            <form th:action="@{/logout}" method="post">
+                <button><input type="submit" value="Logout" class="btn" /></button>
+            </form>
+        </div>
     </div>
 </div>
 </body>

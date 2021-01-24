@@ -16,14 +16,13 @@
                 <td>Imie</td>
                 <td>Nazwisko</td>
                 <td>Szczegóły</td>
-                <td>Usuń</td>
             </tr>
             </thead>
             <tbody>
             <tr th:each="person : ${persons}">
                 <td th:text="${person.firstName}"></td>
                 <td th:text="${person.lastName}"></td>
-                <td><a th:href="${'/sperson/id/' + person.personId}">Pokaż szczegóły</a></td>
+                <td><a th:href="${'/sperson/id/' + person.personId}"><button>Pokaż szczegóły</button></a></td>
                 <td><a th:href="${'/delPerson?id='+person.personId}"></a></td>
             </tr>
             </tbody>
