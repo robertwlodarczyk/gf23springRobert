@@ -2,6 +2,7 @@ package com.sda.gf23spring.service;
 
 import com.sda.gf23spring.person.Person;
 import com.sda.gf23spring.repository.PersonDao;
+import com.sda.gf23spring.repository.PersonDaoHibernate;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ import static org.mockito.Mockito.when;
 
 class PersonServiceImplTest {
 
-    private PersonDao personDao = mock(PersonDao.class);
+    private PersonDaoHibernate personDao = mock(PersonDaoHibernate.class);
     private PersonService personService;
 
     @BeforeEach
@@ -25,7 +26,7 @@ class PersonServiceImplTest {
         p2.setPersonId(2);
         List<Person> personList = List.of(p1, p2);
         personService = new PersonServiceImpl(personDao);
-        when(personDao.getAll()).thenReturn(personList);
+        when(personDao.findAll()).thenReturn(personList);
     }
 
     @Test

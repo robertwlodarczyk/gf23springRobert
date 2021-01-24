@@ -1,6 +1,7 @@
 package com.sda.gf23spring;
 
 import com.sda.gf23spring.person.Person;
+import com.sda.gf23spring.repository.PersonDao;
 import com.sda.gf23spring.repository.PersonDaoHibernate;
 import com.sda.gf23spring.service.PersonService;
 import org.slf4j.Logger;
@@ -17,13 +18,19 @@ public class ProgStarter implements CommandLineRunner {
     MessageSource messageSource;
 
     PersonService personService;
+    PersonDao personDao;
     PersonDaoHibernate personDaoHibernate;
 
     @Override
     public void run(String... args) throws Exception {
-        List<Person> all = personService.getAll();
+        List<Person> all = personDao.getAll();
         personDaoHibernate.saveAll(all);
 
+    }
+
+    @Autowired
+    public void setPersonDao(PersonDao personDao) {
+        this.personDao = personDao;
     }
 
     @Autowired

@@ -3,6 +3,7 @@ package com.sda.gf23spring.service;
 
 import com.sda.gf23spring.person.Person;
 import com.sda.gf23spring.repository.PersonDao;
+import com.sda.gf23spring.repository.PersonDaoHibernate;
 import com.sda.gf23spring.utils.Utils;
 import org.springframework.stereotype.Service;
 
@@ -15,21 +16,23 @@ import java.util.stream.Collectors;
 
 @Service
 public class PersonServiceImpl implements PersonService {
-    private PersonDao personDao;
+    PersonDaoHibernate personDaoHibernate;
 
-    public PersonServiceImpl(PersonDao personDao) {
-        this.personDao = personDao;
+    public PersonServiceImpl(PersonDaoHibernate personDaoHibernate) {
+
+        this.personDaoHibernate = personDaoHibernate;
     }
 
     @Override
     public List<Person> getAll() {
 
-        return personDao.getAll();
+        return personDaoHibernate.findAll();
     }
 
     @Override
     public Person getById(int personId) {
-        return personDao.getById(personId);
+
+        return personDaoHibernate.getOne(personId);
     }
 
     @Override
@@ -37,7 +40,7 @@ public class PersonServiceImpl implements PersonService {
         if (firstName == null || "".equals(firstName)) {
             return new ArrayList<>();
         }
-        return personDao.getAll()
+        return getAll()
                 .stream()
                 .filter(x -> x.getFirstName().toLowerCase().contains(firstName.toLowerCase()))
                 .collect(Collectors.toList());
@@ -45,17 +48,15 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> getByLastName(String lastName) {
-        return personDao.getByLastName(lastName);
+
+        return personDaoHibernate.getAllByLastName(lastName);
     }
 
     @Override
     public List<Person> getByBirthDateBetween(String from, String to, DateTimeFormatter format) {
         LocalDate dateFrom = checkString(from) ? LocalDate.parse(from, format) : LocalDate.of(1900, 01, 01);
         LocalDate dateTo = checkString(to) ? LocalDate.parse(to, format) : LocalDate.now();
-        return personDao.getByBirthDateBetween(dateFrom, dateTo)
-                .stream()
-                .sorted(Comparator.comparing(Person::getBirthDate))
-                .collect(Collectors.toList());
+        return personDaoHibernate.getAllByBirthDateBetween(dateFrom,dateTo);
     }
 
     private boolean checkString(String txt) {
@@ -64,7 +65,8 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<Person> getBySalaryBetween(double from, double to) {
-        return personDao.getBySalaryBetween(from, to);
+
+        return personDaoHibernate.getAllBySalaryBetween(from, to);
     }
 
     @Override
@@ -78,16 +80,20 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person add(Person person) {
-        return personDao.add(person);
+        return personDaoHibernate.save(person);
     }
 
     @Override
     public Person modify(int personId, Person person) {
-        return personDao.modify(personId, person);
+        person.setPersonId(personId);
+        return personDaoHibernate.save(person);
     }
 
     @Override
     public Person remove(int personId) {
-        return personDao.remove(personId);
+        Person byId = getById(personId);
+        personDaoHibernate.delete(byId);
+        return byId;
     }
+
 }
