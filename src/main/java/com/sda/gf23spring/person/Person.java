@@ -71,13 +71,17 @@ public class Person {
     }
 
     public String getBirthDateS() {
-        birthDateS=birthDate.format(Utils.DATE_FORMAT_HTML);
+        if (birthDate != null) {
+            birthDateS = birthDate.format(Utils.DATE_FORMAT_HTML);
+        }
         return birthDateS;
     }
 
     public void setBirthDateS(String birthDateS) {
-        birthDate = LocalDate.parse(birthDateS, Utils.DATE_FORMAT_HTML);
-        this.birthDateS = birthDateS;
+        if (birthDateS != null) {
+            birthDate = LocalDate.parse(birthDateS, Utils.DATE_FORMAT_HTML);
+            this.birthDateS = birthDateS;
+        }
     }
 
     @Override

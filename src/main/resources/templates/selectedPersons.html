@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title th:text="#{title}"></title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="/css/newStyles.css"/>
 </head>
 <body>
 <div class="container">
@@ -24,7 +24,7 @@
                 <td th:text="${person.firstName}"></td>
                 <td th:text="${person.lastName}"></td>
                 <td><a th:href="${'/sperson/id/' + person.personId}">Pokaż szczegóły</a></td>
-                <td><a th:href="${'/delPerson?id='+person.personId}">x</a></td>
+                <td><a th:href="${'/delPerson?id='+person.personId}"></a></td>
             </tr>
             </tbody>
         </table>

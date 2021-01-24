@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Dodaj osobę</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="/css/newStyles.css"/>
 </head>
 <body>
 <div class="container">
@@ -22,7 +22,7 @@
             <p th:if="${#fields.hasErrors('birthDateS')}" th:errors="*{birthDateS}" style="color: red;"></p>
             <label>Wynagrodzenie: </label>
             <input type="number" th:field="*{salary}"/>
-            <button type="submit" class="btn">Dodaj osobę</button>
+            <button type="submit" class="btn"><button>Dodaj osobę</button></button>
         </form>
     </div>
 </div>

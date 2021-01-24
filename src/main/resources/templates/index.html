@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title th:text="#{title}"></title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="/css/newStyles.css"/>
 </head>
 <body>
 <div class="container">
@@ -23,13 +23,31 @@
             <tr th:each="person : ${persons}">
                 <td th:text="${person.firstName}"></td>
                 <td th:text="${person.lastName}"></td>
-                <td><a th:href="${'/sperson/id/' + person.personId}">Pokaż szczegóły</a></td>
-                <td><a th:href="${'/delPerson?id='+person.personId}" >x</a></td>
+                <td><a th:href="${'/sperson/id/' + person.personId}">
+                    <button>Pokaż szczegóły</button>
+                </a></td>
+                <td><a th:href="${'/delPerson?id='+person.personId}">
+                    <button>X</button>
+                </a></td>
             </tr>
             </tbody>
         </table>
+        <div>
+            <form class="form-group" th:name="${persons}" th:action="@{/selectedPersons}" th:method="get">
+                <label>Data od: </label>
+                <input type="date" th:name="min"/>
+                <label>Data do:</label>
+                <input type="date" th:name="max">
+                <button type="submit" class="btn">
+                    <button>Wyszukaj</button>
+                </button>
+
+            </form>
+        </div>
         <div class="row">
-            <a href="/addPerson">Dodaj osobę</a>
+            <a href="/addPerson">
+                <button>Dodaj osobę</button>
+            </a>
         </div>
     </div>
 </div>

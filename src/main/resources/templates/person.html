@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Osoba</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="/css/newStyles.css"/>
 </head>
 <body>
 <div class="container">
@@ -15,7 +15,7 @@
         <ul>Nazwisko: <span th:text="${person.lastName}"></span></ul>
         <ul>Data urodzenia: <span th:text="${person.birthDate}"></span></ul>
         <ul>Wynagrodzenie: <span th:text="${person.salary}"></span></ul>
-        <ul><a th:href="${'/modifyPerson/'+ person.personId}">Modyfikuj</a></ul>
+        <ul><a th:href="${'/modifyPerson/'+ person.personId}"><button>Modyfikuj</button></a></ul>
     </div>
 </div>
 </body>
